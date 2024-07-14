@@ -8,7 +8,10 @@ CMD Z 取消
 CMD SHIFT Z 取消取消本身
 
 **FN F 全屏**
+CMD M 最小化窗口
+CMD SHIFT M 最小化所有窗口
 CMD OPTION ESCAPE 强退
+CMD H 隐藏窗口
 
 CMD , 偏好设置
 CMD W 关一个tab
@@ -34,6 +37,8 @@ CMD 上 回上一个目录
 CMD N 新建窗口， CMD W 关闭tab，CMD T 新建TAB
 shift command G 去指定目录
 ==fn DEL 向后删一个字符==
+
+CMD J 勾选计算所有大小（将显示文件夹大小）
 
 # Safari
 加书签 CMD D， 前往书签 CMD CTRL 1
