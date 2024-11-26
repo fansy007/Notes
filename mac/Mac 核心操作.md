@@ -62,4 +62,10 @@ defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-t
 设置 -- 键盘 -- 调度中心 -- 打开关闭台前调度
 设了快捷键 option Q
 
+# 设置 2024/11/24
+桌面和程序坞 屏幕上的位置，关闭程序坞中显示建议app和最近使用app
+
+cmd + shift + 5 改一下截图的默认保存位置
+
+控制中心 wifi 蓝牙始终在菜单栏显示， 听觉在菜单栏显示可以调出背景音
 

@@ -691,3 +691,480 @@ boardPassengers(1000,5);
 
 - 187待续
 
+widow is the gloabl object represent the whole web browser window
+document is a property fo window, represent the html of the web page --
+## document
+property: body head title forms links images
+methods: getElementById() getElementsByClassName() querySelector() querySelectorAll() createElement() 
+
+## main object of document
+```javascript
+document.documentElement // <html>
+document.body // <body>
+document.head // <head>
+```
+
+## query
+```javascript
+document.querySelector('.section-1');
+document.quuerySelectorAll('.section');
+```
+
+## insert
+
+```javascript
+document.querySelector('body').insertAdjacentHTML('afterbegin', '...'); // insert html text, beforebegin, afterbegin, beforeend, afterend
+
+const msg = document.createElement('div');
+msg.classList.add('cookie-message');
+msg.innerHTML = '.......';
+
+document.querySelector('.section').prepend(msg); // append prepend
+document.querySelector('.cookie-messgae').addEventListener('click', function(e){
+ msg.remove(); // msg.parentElement.removeChild(msg)
+});
+```
+
+## operate on styles, attributes
+```javascript
+// css style, to store global properties candidates
+:root {
+  --color-primary: #5ec576
+}
+
+// edit in js
+document.documentElement.style.setProperty('--color-primary','oranged');
+message.style.setProperty('color', 'var(--color-primary)'); // same as message.style.color = 'var(--color-primary)'
+
+// href, link, src, style -- those are predefined attributes can be fetched by element directly, all others should be fetch by getAttribute() function
+const link = $('.twitter-link');
+log(link.src);
+log(link.href);
+log(link.getAttribute('data-version-number')); // same as link.dataSet.versionNumber
+
+// add class for element
+link.classList.add('');
+link.classList.remove('');
+link.classList.toggle('');
+link.classList.contains(''); // js Array shoud use includes function for it
+
+```
+
+## scroll the element
+
+```javascript
+btnScrollTo.addEventListener('click', e=> {
+	section1.scrollIntoView({behavior:'smooth'});
+}
+);
+```
+
+## event bubbling
+event 从child component往上传递，event.target 指向child component， event.currentTarget指向当前接收event的parent component
+
+```javascript
+$('.nav__links').addEventListener('click', function(el) {
+	if(el.target.classList.contains('nav_link')) {
+		const id = el.target.getAttribute('href');
+		el.preventDefault();
+		$(id).scrollIntoView({
+			behavior: 'smooth'
+		});
+	}
+});
+```
+
+
+## dom tranverse
+childNodes // all children include text
+children // only elements
+firstElementChild, lastElementChild
+
+parentNode 
+closest // query it's parent by id class etc
+previousElementSibling, previousSibling 
+nextElementSibling, nextSibling
+parentElement.children
+
+## pass extra param into event listener
+
+use this param to fetch a value from calling side
+sticky
+```javascript
+const opacityFun= function(e) {
+	const that = this;
+	if(e.target.classList.contains('.nav__link')) {
+		e.target.closest('.nav').querySelectorAll('.nav__link').forEach(
+			function(el) {
+				el.target.style.opacity = that;
+			}
+		);
+	}
+}
+
+$('.nav').addEventListener('mouseout', opacityFun.bind(1))
+```
+# import js
+
+```javascript
+<script src="xxx.js">. -- @HEAD @ Body end
+
+<script async src="xxx.js">
+<script defer src="xxx.js"> -- load js when loading html, but defer execute after html loaded, put this at head is the best choice
+```
+
+# OOP
+oop vs functional
+
+abstraction, encapsulation inheritance polymorphism
+![[Pasted image 20241125101622.png|350]]
+
+delegation style oop
+
+## Construction function
+
+![[Pasted image 20241125110831.png]]
+
+__prototype__ chain
+![[Pasted image 20241125111353.png]]
+
+```javascript
+'use strict';
+const log = (...msg) => console.log(...msg);
+const $ = document.querySelector.bind(document);
+
+// construct function, use new to create object
+// new {} is created
+// function is called, this point to {}
+// {} linked to Person.prototype <-> obj.__proto__
+// function auto return this
+const Person = function(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+
+    // this.sayHello = function() {  // never construct a method inside constructor function, but use prototypes
+    //     log(`hello, ${this.firstName}`);
+    // }
+
+};
+
+Person.prototype.sayHello = function() { // this will be only one copy to all Person object, will be low memory expense & efficiency
+    log(`hello, ${this.firstName} -- ${this.species}`);
+}
+
+Person.prototype.species = 'Homo sapiens'; // can also define property in prototype also, person.hasOwnProperty('species') will return false for it
+
+const person = new Person('Person',1991);
+log(person);
+log(person instanceof Person);
+person.sayHello();
+console.log(person.__proto__===Person.prototype); // true, __proto__ belong to object, prototype belong to constructor function
+console.log(person.__proto__.constructor); // constructor object belong to __prototype__ object which point to constructor function
+console.log(person.__proto__ instanceof Object);
+log(person.__proto__.__proto__);
+// for(const [key, value] of Object.entries(person)) { // this will not include prototype properties & functions
+//     log(`key: ${key}, value:${value}`);
+// }
+```
+
+# ES6 sugar
+extend a class in ES6 is much simple
+```javascript
+class CitiPerson extends Person{
+    constructor(firstName, birthYear) {       
+        super(firstName, birthYear);
+    }
+}
+const citi = new CitiPerson('Lee', 1998);
+citi.sayHello();
+```
+
+the same as the original one
+```javascript
+const CitiPerson = function(firstName, birthYear) {
+    Person.call(this, firstName, birthYear);
+}
+CitiPerson.prototype = Object.create(Person.prototype);
+CitiPerson.prototype.constructor = CitiPerson;
+const citi = new CitiPerson('Lee', 1998);
+citi.sayHello();
+```
+
+背后的运行机制
+```javascript
+const citi = new CitiPerson('Lee', 1998);
+// 等价于：
+const citi = {};                    // 创建新对象
+citi.__proto__ = CitiPerson.prototype; // 设置原型
+CitiPerson.call(citi, 'Lee', 1998);   // 调用 CitiPerson，内部调用 Person.call(this)
+```
+
+# getter setter
+```javascript
+const account = {
+    owner: 'Jonas',
+    movements: [200,530,120,300],
+    get latest() {
+        return this.movements.slice(-1).pop();
+    },
+
+    set latest(mov) {
+        this.movements.push(mov);
+    }
+}
+
+log(account['latest']);
+account.latest = 50;
+log(account.movements);
+```
+
+# static function
+```javascript
+Person.age = function() {
+    log("static function");
+}
+```
+
+# Object.create
+
+this function create an object and set its prototype by input param to the return object
+1. 创建一个object
+2. 把这个object的prototype指向 Object.create(origObject)中传入的origObject
+
+```javascript
+const PersonProto = {
+    sayHello: function() {
+        log(`hello, ${this.firstName}`);
+    }
+}
+
+const steven = Object.create(PersonProto);
+steven.sayHello.call({firstName: 'Johnson'});
+```
+
+## inherent
+const StudentProto = Object.create(PersonProto); 
+const student = Object.create(StudentProto);
+
+其中有两个原型， PersonProto， StudentProto
+省略了构造方法，而是直接使用obejct来构造原型链
+
+```javascript
+student.__proto__ -> StudentProto
+StudentProto.__proto__ -> PersonProto
+
+```
+
+```javascript
+const PersonProto = {
+    sayHello: function() {
+        log(`hello, ${this.name}`);
+    },
+    init: function(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+const StudentProto = Object.create(PersonProto);
+
+StudentProto.sayHello2 = function(){
+    log(`hello2, ${this.name}`);
+}
+
+const student = Object.create(StudentProto);
+student.init('Lee',18);
+student.sayHello();
+student.sayHello2();
+```
+
+# simple ajax
+```javascript
+const queryCountry = function(countryName) {
+    const request = new XMLHttpRequest();
+    request.open('GET', `https://restcountries.com/v3.1/name/${countryName}`);
+    request.send();
+    request.addEventListener('load', function(){
+        console.log(this.responseText);
+        const [data] = JSON.parse(this.responseText);
+        console.log(data);
+
+        const [language] = Object.values(data.languages);
+        const [{ name: currency }] = Object.values(data.currencies);
+        const html = `
+            <article class="country">
+            <img class="country__img" src="${data.flags.png}" />
+            <div class="country__data">
+            <h3 class="country__name">${data.name.common}</h3>
+            <h4 class="country__region">${data.region}</h4>
+            <p class="country__row"><span>👫</span>${(data.population/1000000).toFixed(1)}</p>
+            <p class="country__row"><span>🗣️</span>${language}</p>
+            <p class="country__row"><span>💰</span>${currency}</p>
+            </div>
+        </article>
+        `
+        console.log(html);
+        countriesContainer.insertAdjacentHTML('beforeend',html);
+
+    });
+}
+```
+
+# Promise
+
+a container for a future value
+![[Pasted image 20241125165433.png|600]]
+
+
+# !!! Moden AJAX -- FETCH THEN
+fetch, then will both return promise type, which will be elegant promise chain
+```javascript
+const renderErr = function(msg) {
+    countriesContainer.insertAdjacentText('beforeend',msg);
+}
+
+function getJson(url) {
+    return fetch(url).then(response=>{
+        if(!response.ok) {
+            throw new Error(`respond status is ${response.status}`);
+        }
+        return response.json();
+    });
+}
+
+const getCountryData = function(country) {
+    getJson(`https://restcountries.com/v3.1/name/${country}`)
+   .then(function(data){ // this fetch the real json body
+        console.log(data);
+        renderCountry(data);
+        const neighber = data[0]?.borders;
+        console.log(neighber);
+        if(!neighber) return;
+
+        return getJson(`https://restcountries.com/v3.1/alpha/${neighber[0]}`)
+    }).then(data => renderCountry(data)).catch(err=> {
+        renderErr(`${err}`);
+    }).finally(()=>log('call finished'));
+```
+
+# callback queue
+javascript only one single thread
+
+![[Pasted image 20241126101444.png|725]]
+
+promise use microtasks queue, which before callback queue
+
+# use async function to deal with promise object
+```javascript
+const waitAndDo = async function(number) {
+        const result = await new Promise(function(resolveFun,errFun){
+            let sum = 0;
+            for(let i=1;i<number;i++) {
+                sum += i;
+            }
+            if(sum<10000) {
+                resolveFun(sum);
+            } else {
+                errFun(new Error(sum)); // this will throw new Error(sum) out, so need catch it somewhere
+            }
+        });
+        log(`this is inside await ${result}`);
+        return result;
+    
+}
+
+waitAndDo(1000).then(out=>log(`this is out side await ${out}`)).catch(err=>{
+    log(err);
+});
+```
+
+## promise other functions
+Promise.all
+Promise.race
+
+# NPM
+node package management
+
+javascript bundlers -- webpack, parcel
+
+# modules
+```javascript
+<script type='module' defer src="script.js"></script>
+
+// shoppingCart.js
+const sayHello = function() {
+    console.log('hello,world');
+}
+
+const age = 18;
+export {sayHello, age}
+
+// script.js
+// import {sayHello, age as ag} from './shoppingCart.js'
+import * as shoppingCart from './shoppingCart.js'
+console.log('Import module');
+shoppingCart.sayHello();
+console.log(shoppingCart.age);
+
+```
+
+actually it's the as the old style
+
+```javascript
+const shappingCart = 
+(function(){
+    console.log('hello');
+    const age = 24;
+    return { age:age};
+})();
+
+console.log(shappingCart.age);
+```
+
+# using npm
+npm init
+ npm install lodash
+ 
+ 跑完之后会有一个 package.json在当前目录，
+ 有这个文件时跑 npm install不指定具体的包， npm会根据package.json安装所有的module
+
+# parcel -- js bundler tools
+npm install parcel --save-dev
+
+use parcel
+```sh
+npx parcel index.html
+```
+
+parcel will install index.html and js into dist folder
+
+也可以在package.json中加一段
+```json
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir ./static"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21"
+  },
+  "description": "",
+  "devDependencies": {
+    "parcel": "^2.13.2"
+  }
+}
+
+```
+然后再terminal中跑
+npm run build -- 打包
+npm run start -- 调试
+
+
+
