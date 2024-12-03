@@ -112,7 +112,6 @@ log(jonas['calcAge']());
 
 # CSS
 class , id (id是唯一的，class可以复用)
-
 ```css
 <head>
 	<title>learning css</title>
@@ -186,6 +185,28 @@ a {
 }
 ```
 to be coontinue 70...
+
+
+## layout
+height: 100vh    -> this will always occupy 100% windows height not considering its parent
+
+flex layout
+```css
+/* how to play a flex*/
+/*parent */
+.parent {
+	display: flex;
+	align-content: flex-start;  /*when change a new line, align the position*/
+}
+
+.child {
+	flex: 0 0 auto; /* that makes the child to grow and shrink*/
+
+}
+
+```
+
+
 
 # hidden show player
 
@@ -1167,4 +1188,10 @@ npm run build -- 打包
 npm run start -- 调试
 
 
+# imperative vs declarative
+
+declarative -- only tell computer what we want, but let computer determine how to impl it.
+-> functional programming
+
+   
 
