@@ -8,6 +8,8 @@ type(a)
 # String
 
 倒序
+
+a[startIndex:endIndex:step]
 ![[Pasted image 20240831092722.png|263]]
 
 ![[Pasted image 20240831094656.png|400]]
