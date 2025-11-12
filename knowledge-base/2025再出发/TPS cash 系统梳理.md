@@ -2,6 +2,56 @@
 
 这是TPS CASH 金融交易系统的架构图，聚焦于TPS相关的组件和流程，以及上下游系统的数据流动的方向和组件之间的调用关系。
 
+花旗大背景 下的FICC描述：
+fixed income， currencies， commodities
+tps cash 主要的业务 -- UST credit FXLM MBS
+RFQ -- request for quote 
+
+花旗主要的业务， 自营（或者对冲），做市商，承销发行
+分Bank chain， Corp Chain
+
+GSP （global spread product）
+RATES （BOND）
+
+上游 bbg tradeweb 走fix协议，把fix msg，或者是gfi entity 传到citi的front office
+
+中台的主要工作是 trade enrich，trade matching，money calculation，trade split，money calculation，quality control，position capture and risk management（smart check）， regulation report，lifecircle event management
+
+settle相关的信息
+SDI Fedwire DTC Euroclear等等 （fedwire split 50M）
+
+FICC fix income clearing cooperation下有专门的mbs 清算部门mbsd
+tba -- pool 的转化
+
+tpscash trade 要经历三个阶段 FO ACCEPT， MO ACCEPT，BO ACCEPT
+FO ACCEPT是传进来的前台做的那条trade -- capture position，MO ACCEPT是整个TXN （包括allocation，currency leg，hedge leg都被接受了）-- 发regulatory， BO ACCEPT 是back office的返回
+
+
+验证 trader sales的role，通过产品+账户，计算出是否active并且给出businessline，不同的business line走不同的position，regulation，settle 路径
+验证 哪些人可以access哪些account，通过eems rmcc code等等计算
+
+trader 有 cooperate hiarachy
+legal entity -- subbusiness -- partition -- strategy code -- firm account
+
+product 有 rmcc code
+
+Euro bond --
+product country -- 比如说ibm债券
+issue country -- 日本
+product currency -- 日元
+
+samura bond，外国公司跑到日本发债券
+
+
+product country -- 比如说 劳斯莱斯债券
+issue country -- 美国
+product currency -- 美元
+
+yanki 债券
+
+
+
+
 # 主要交易的产品有  
 政府债 UST GILT JGB G10
 Local market

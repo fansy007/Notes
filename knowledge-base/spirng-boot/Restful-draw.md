@@ -24,10 +24,9 @@ BeanPostProcessor::postProcessAfterInitialization ^ooxnH3RB
 Spring self defined BeanPostProcessor runs after bean property set,
 as proper set also by System defined AutowiredAnnotationBeanPostProcessor.  ^MV1TWlVD
 
-[[Springboot2023 & Restful api#URI]] ^OPvhCr87
-
-[[spring-boot#Springboot 加载原理]] ^GI10M7en
-
+# Element Links
+OPvhCr87: [[Springboot2023 & Restful api#URI]]
+GI10M7en: [[spring-boot#Springboot 加载原理]]
 
 # Embedded files
 e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
@@ -38,7 +37,7 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 {
 	"type": "excalidraw",
 	"version": 2,
-	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/1.9.26",
+	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.1.6",
 	"elements": [
 		{
 			"type": "embeddable",
@@ -66,7 +65,10 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"updated": 1714802874269,
 			"link": "[[Springboot2023 & Restful api#URI]]",
 			"locked": false,
-			"validated": true
+			"scale": [
+				1,
+				1
+			]
 		},
 		{
 			"type": "image",
@@ -127,7 +129,10 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"updated": 1714802875205,
 			"link": "[[spring-boot#Springboot 加载原理]]",
 			"locked": false,
-			"validated": true
+			"scale": [
+				1,
+				1
+			]
 		},
 		{
 			"type": "rectangle",
@@ -197,8 +202,7 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Create Java Object",
-			"lineHeight": 1.25,
-			"baseline": 18
+			"lineHeight": 1.25
 		},
 		{
 			"type": "rectangle",
@@ -272,8 +276,7 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Populate autowire member Fields\n（AutowiredAnnotationBeanPostProcessor）",
-			"lineHeight": 1.25,
-			"baseline": 34
+			"lineHeight": 1.25
 		},
 		{
 			"type": "rectangle",
@@ -348,8 +351,7 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "BeanPostProcessor::postProcessBeforeInitialization",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "rectangle",
@@ -428,8 +430,7 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "InitializingBean::afterPropertiesSet",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "rectangle",
@@ -503,8 +504,7 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "@Bean(initMethod=\"\")",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "rectangle",
@@ -574,8 +574,7 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "BeanPostProcessor::postProcessAfterInitialization",
-			"lineHeight": 1.25,
-			"baseline": 14
+			"lineHeight": 1.25
 		},
 		{
 			"type": "arrow",
@@ -875,13 +874,12 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "Spring self defined BeanPostProcessor runs after bean property set,\nas proper set also by System defined AutowiredAnnotationBeanPostProcessor. ",
-			"lineHeight": 1.25,
-			"baseline": 43
+			"lineHeight": 1.25
 		},
 		{
 			"type": "frame",
-			"version": 212,
-			"versionNonce": 1416214840,
+			"version": 213,
+			"versionNonce": 719971881,
 			"isDeleted": false,
 			"id": "7HVf8DT97i2RKKeYEYRvm",
 			"fillStyle": "solid",
@@ -901,84 +899,17 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1697959344193,
+			"updated": 1758249552476,
 			"link": null,
 			"locked": false,
-			"name": "Spring bean initializing"
-		},
-		{
-			"id": "MK8wmUXX",
-			"type": "text",
-			"x": -1415.8237966460622,
-			"y": -452.4651322372131,
-			"width": 10,
-			"height": 25,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffec99",
-			"fillStyle": "hachure",
-			"strokeWidth": 2,
-			"strokeStyle": "solid",
-			"roughness": 0,
-			"opacity": 100,
-			"groupIds": [],
-			"frameId": null,
-			"roundness": null,
-			"seed": 2013899532,
-			"version": 2,
-			"versionNonce": 1795540276,
-			"isDeleted": true,
-			"boundElements": null,
-			"updated": 1714802861270,
-			"link": null,
-			"locked": false,
-			"text": "",
-			"rawText": "",
-			"fontSize": 20,
-			"fontFamily": 1,
-			"textAlign": "left",
-			"verticalAlign": "top",
-			"baseline": 18,
-			"containerId": null,
-			"originalText": "",
-			"lineHeight": 1.25
-		},
-		{
-			"id": "KlTRtNXi",
-			"type": "text",
-			"x": -969.1571299793957,
-			"y": -93.3163692163796,
-			"width": 10,
-			"height": 25,
-			"angle": 0,
-			"strokeColor": "#1e1e1e",
-			"backgroundColor": "#ffec99",
-			"fillStyle": "hachure",
-			"strokeWidth": 2,
-			"strokeStyle": "solid",
-			"roughness": 0,
-			"opacity": 100,
-			"groupIds": [],
-			"frameId": null,
-			"roundness": null,
-			"seed": 2102073780,
-			"version": 2,
-			"versionNonce": 183646732,
-			"isDeleted": true,
-			"boundElements": null,
-			"updated": 1714802889093,
-			"link": null,
-			"locked": false,
-			"text": "",
-			"rawText": "",
-			"fontSize": 20,
-			"fontFamily": 1,
-			"textAlign": "left",
-			"verticalAlign": "top",
-			"baseline": 18,
-			"containerId": null,
-			"originalText": "",
-			"lineHeight": 1.25
+			"name": "Spring bean initializing",
+			"customData": {
+				"frameColor": {
+					"stroke": "#D4D4D4",
+					"fill": "#ADADAD",
+					"nameColor": "#7A7A7A"
+				}
+			}
 		}
 	],
 	"appState": {
@@ -996,10 +927,10 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 2659.1571299793954,
-		"scrollY": 1055.295535883046,
+		"scrollX": 3038.309851476649,
+		"scrollY": 1327.8686153101298,
 		"zoom": {
-			"value": 0.30000000000000004
+			"value": 0.25
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,
@@ -1014,7 +945,8 @@ e9916fb0031d1e63736eae4f63403ff7c51697f4: [[Pasted image 20231007195139.png]]
 			"clip": true,
 			"name": true,
 			"outline": true
-		}
+		},
+		"objectsSnapModeEnabled": false
 	},
 	"files": {}
 }
