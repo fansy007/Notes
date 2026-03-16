@@ -412,4 +412,10 @@ for item in path:
 ```
 
 
+# 虚拟环境
+![[Pasted image 20260208142042.png]]
+并且运行一下下面的active命令
+
+jupyter lab #直接启动jupyter
+
 

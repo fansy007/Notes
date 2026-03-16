@@ -11,7 +11,7 @@ CMD SHIFT Z 取消取消本身
 CMD M 最小化窗口
 CMD SHIFT M 最小化所有窗口
 CMD OPTION ESCAPE 强退
-CMD H 隐藏窗口
+==CMD H 隐藏窗口==
 
 CMD , 偏好设置
 CMD W 关一个tab
